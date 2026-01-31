@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, AlertTriangle, Building2, Calendar, Download, Database, ChevronDown, ChevronRight, Filter } from 'lucide-react';
+import { Search, AlertTriangle, Building2, Download, Database, ChevronDown, ChevronRight, Filter, Scale } from 'lucide-react';
 
 // ============================================
 // MESES DISPONIBLES - AGREGAR CADA MES NUEVO AQUÍ
@@ -7,7 +7,6 @@ import { Search, AlertTriangle, Building2, Calendar, Download, Database, Chevron
 const MESES_DISPONIBLES = [
   { id: '2026-01', nombre: 'Enero 2026', fechaPublicacion: '15 de enero de 2026' },
   // { id: '2026-02', nombre: 'Febrero 2026', fechaPublicacion: '15 de febrero de 2026' },
-  // { id: '2026-03', nombre: 'Marzo 2026', fechaPublicacion: '15 de marzo de 2026' },
 ];
 
 // ============================================
@@ -29,12 +28,12 @@ const sancionesData = [
   { id: 61375, mes: "2026-01", entidad: "GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa", subsector: "Casas de bolsa", tipo: "Multa", monto: 1924400, conducta: "LMV - Deficiencias en el funcionamiento del área de cumplimiento en la materia", fechaImposicion: "2025-12-05" },
   { id: 61376, mes: "2026-01", entidad: "GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa", subsector: "Casas de bolsa", tipo: "Multa", monto: 1924400, conducta: "LMV - Deficiencias en sistemas automatizados de detección, monitoreo y reporte de operaciones", fechaImposicion: "2025-12-05" },
   { id: 61377, mes: "2026-01", entidad: "GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa", subsector: "Casas de bolsa", tipo: "Multa", monto: 962200, conducta: "LMV - Deficiencias en la conservación, resguardo o seguridad de información y documentación", fechaImposicion: "2025-12-05" },
-  { id: 61378, mes: "2026-01", entidad: "GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa", subsector: "Casas de bolsa", tipo: "Multa", monto: 1924400, conducta: "LMV - Información o documentación incompleta o desactualizada para la identificación de clientes.", fechaImposicion: "2025-12-05" },
+  { id: 61378, mes: "2026-01", entidad: "GBM Grupo Bursátil Mexicano, S.A. de C.V., Casa de Bolsa", subsector: "Casas de bolsa", tipo: "Multa", monto: 1924400, conducta: "LMV - Información o documentación incompleta o desactualizada para la identificación de clientes", fechaImposicion: "2025-12-05" },
   { id: 61379, mes: "2026-01", entidad: "Banco del Bajío, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 2583200, conducta: "LIC - Deficiencias en Control Interno", fechaImposicion: "2025-12-09" },
-  { id: 61380, mes: "2026-01", entidad: "Banco del Bajío, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 784500, conducta: "LIC - Inconsistencias en los procedimientos de conocimiento del cliente.", fechaImposicion: "2025-12-09" },
+  { id: 61380, mes: "2026-01", entidad: "Banco del Bajío, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 784500, conducta: "LIC - Inconsistencias en los procedimientos de conocimiento del cliente", fechaImposicion: "2025-12-09" },
   { id: 61381, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial", fechaImposicion: "2025-12-09" },
-  { id: 61382, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial que procuren la transparencia", fechaImposicion: "2025-12-09" },
-  { id: 61383, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial relativo a operaciones con personas relacionadas", fechaImposicion: "2025-12-09" },
+  { id: 61382, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial", fechaImposicion: "2025-12-09" },
+  { id: 61383, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial", fechaImposicion: "2025-12-09" },
   { id: 61384, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 224050, conducta: "LIC - Omitir cumplir con las disposiciones de carácter prudencial", fechaImposicion: "2025-12-09" },
   { id: 61385, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 448100, conducta: "LIC - No cumplir con las obligaciones relativas al uso de medios electrónicos", fechaImposicion: "2025-12-09" },
   { id: 61386, mes: "2026-01", entidad: "Banco Shinhan de México, S.A., Institución de Banca Múltiple", subsector: "Instituciones de banca múltiple", tipo: "Multa", monto: 358480, conducta: "LIC - No atender requerimientos de información dentro del plazo", fechaImposicion: "2025-12-09" },
@@ -89,9 +88,9 @@ const sancionesData = [
   { id: 61437, mes: "2026-01", entidad: "Cooperativa de Ahorro y Préstamo Kafen Tomin", subsector: "SOCAP", tipo: "Multa", monto: 67554, conducta: "LRASCAP - No proporcionar estados financieros con requisitos", fechaImposicion: "2025-12-19" },
   { id: 61438, mes: "2026-01", entidad: "Caja Popular Apaseo el Alto S.C. de A.P. de R.L. de C.V.", subsector: "SOCAP", tipo: "Multa", monto: 67554, conducta: "LRASCAP - Registros contables incorrectos", fechaImposicion: "2025-12-19" },
   { id: 61439, mes: "2026-01", entidad: "Caja Popular Apaseo el Alto S.C. de A.P. de R.L. de C.V.", subsector: "SOCAP", tipo: "Multa", monto: 67554, conducta: "LRASCAP - No proporcionar documentación en plazos", fechaImposicion: "2025-12-19" },
-  { id: 61440, mes: "2026-01", entidad: "Centro Cambiario Divisa Mexicana, S.A. de C.V.", subsector: "Centros Cambiarios", tipo: "Multa", monto: 453000, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes", fechaImposicion: "2025-12-19" },
-  { id: 61441, mes: "2026-01", entidad: "Centro Cambiario Divisa Mexicana, S.A. de C.V.", subsector: "Centros Cambiarios", tipo: "Multa", monto: 226120, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes", fechaImposicion: "2025-12-19" },
-  { id: 61442, mes: "2026-01", entidad: "FINANCIERA APOYO Y LEALTAD, S.A. DE C.V., SOFOM, E.N.R.", subsector: "SOFOM ENR", tipo: "Multa", monto: 289500, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes", fechaImposicion: "2025-12-19" },
+  { id: 61440, mes: "2026-01", entidad: "Centro Cambiario Divisa Mexicana, S.A. de C.V.", subsector: "Centros Cambiarios", tipo: "Multa", monto: 453000, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes regulatorios", fechaImposicion: "2025-12-19" },
+  { id: 61441, mes: "2026-01", entidad: "Centro Cambiario Divisa Mexicana, S.A. de C.V.", subsector: "Centros Cambiarios", tipo: "Multa", monto: 226120, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes regulatorios", fechaImposicion: "2025-12-19" },
+  { id: 61442, mes: "2026-01", entidad: "FINANCIERA APOYO Y LEALTAD, S.A. DE C.V., SOFOM, E.N.R.", subsector: "SOFOM ENR", tipo: "Multa", monto: 289500, conducta: "LGOAAC - Omisión o presentación extemporánea de reportes regulatorios", fechaImposicion: "2025-12-19" },
   { id: 61443, mes: "2026-01", entidad: "Caja Popular Purísima del Rincón S.C. de A.P. de R.L. de C.V.", subsector: "SOCAP", tipo: "Multa", monto: 67554, conducta: "LIC - Deficiencias en presentación de información financiera", fechaImposicion: "2025-12-19" },
   { id: 61444, mes: "2026-01", entidad: "CREDIVERSA, S.A. de C.V., Sociedad Financiera Popular", subsector: "SOFIPO", tipo: "Multa", monto: 226162, conducta: "LUC - Incumplir publicación de estados financieros", fechaImposicion: "2025-12-19" },
   { id: 61445, mes: "2026-01", entidad: "CREDIVERSA, S.A. de C.V., Sociedad Financiera Popular", subsector: "SOFIPO", tipo: "Multa", monto: 226162, conducta: "LRASCAP - Omitir atender observaciones de la Comisión", fechaImposicion: "2025-12-19" },
@@ -148,6 +147,20 @@ export default function App() {
       grouped[s.entidad].monto += s.monto;
     });
     return Object.entries(grouped).map(([name, data]) => ({ name, ...data })).sort((a, b) => b.monto - a.monto).slice(0, 10);
+  }, [datosPorMes]);
+
+  // TOP 5 CONDUCTAS MÁS SANCIONADAS
+  const topConductas = useMemo(() => {
+    const grouped = {};
+    datosPorMes.forEach(s => {
+      // Simplificar la conducta tomando solo la parte principal
+      const conductaSimple = s.conducta.split(' - ')[1] || s.conducta;
+      const ley = s.conducta.split(' - ')[0] || '';
+      if (!grouped[conductaSimple]) grouped[conductaSimple] = { count: 0, monto: 0, ley };
+      grouped[conductaSimple].count++;
+      grouped[conductaSimple].monto += s.monto;
+    });
+    return Object.entries(grouped).map(([name, data]) => ({ name, ...data })).sort((a, b) => b.count - a.count).slice(0, 5);
   }, [datosPorMes]);
 
   const filteredData = useMemo(() => {
@@ -271,41 +284,67 @@ export default function App() {
 
         {/* Dashboard */}
         {activeView === 'dashboard' && (
-          <div className="grid grid-cols-2 gap-6">
-            <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
-              <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
-                <Building2 className="w-4 h-4" style={{ color: '#a663cc' }} /> Distribución por Sector
-              </h3>
-              <div className="space-y-3">
-                {bySubsector.slice(0, 8).map((sector, i) => (
-                  <div key={i}>
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="text-sm truncate pr-4" style={{ color: '#4d4d4d' }}>{sector.name}</span>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs" style={{ color: '#9ca3af' }}>{sector.count}</span>
-                        <span className="text-sm font-semibold" style={{ color: '#1b1b1e' }}>{formatMonto(sector.monto)}</span>
+          <div className="space-y-6">
+            {/* Primera fila: Sectores y Top Entidades */}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
+                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
+                  <Building2 className="w-4 h-4" style={{ color: '#a663cc' }} /> Distribución por Sector
+                </h3>
+                <div className="space-y-3">
+                  {bySubsector.slice(0, 6).map((sector, i) => (
+                    <div key={i}>
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-sm truncate pr-4" style={{ color: '#4d4d4d', maxWidth: '200px' }}>{sector.name}</span>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs px-1.5 py-0.5 rounded" style={{ backgroundColor: '#f3f4f6', color: '#6b7280' }}>{sector.count}</span>
+                          <span className="text-sm font-semibold" style={{ color: '#1b1b1e' }}>{formatMonto(sector.monto)}</span>
+                        </div>
+                      </div>
+                      <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: '#f3f4f6' }}>
+                        <div className="h-full rounded-full" style={{ width: `${stats.totalMonto > 0 ? (sector.monto / stats.totalMonto * 100) : 0}%`, background: 'linear-gradient(90deg, #a663cc, #c084fc)' }} />
                       </div>
                     </div>
-                    <div className="h-2 rounded-full overflow-hidden" style={{ backgroundColor: '#f3f4f6' }}>
-                      <div className="h-full rounded-full" style={{ width: `${stats.totalMonto > 0 ? (sector.monto / stats.totalMonto * 100) : 0}%`, background: 'linear-gradient(90deg, #a663cc, #c084fc)' }} />
+                  ))}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
+                <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
+                  <AlertTriangle className="w-4 h-4" style={{ color: '#ff8361' }} /> Top 10 Entidades por Monto
+                </h3>
+                <div className="space-y-2">
+                  {topInfractores.slice(0, 6).map((inf, i) => (
+                    <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
+                      <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: i === 0 ? '#ff8361' : i === 1 ? '#c9c9c9' : i === 2 ? '#cd7f32' : '#f3f4f6', color: i < 3 ? 'white' : '#6b7280' }}>{i + 1}</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm truncate font-medium" style={{ color: '#393e41' }}>{inf.name}</p>
+                        <p className="text-xs" style={{ color: '#9ca3af' }}>{inf.count} sanc.</p>
+                      </div>
+                      <span className="text-sm font-bold" style={{ color: '#a663cc' }}>{formatMonto(inf.monto)}</span>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
+
+            {/* Segunda fila: TOP 5 CONDUCTAS */}
             <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
-                <AlertTriangle className="w-4 h-4" style={{ color: '#ff8361' }} /> Top 10 Entidades por Monto
+                <Scale className="w-4 h-4" style={{ color: '#ff8361' }} /> Top 5 Conductas Más Sancionadas
               </h3>
-              <div className="space-y-2">
-                {topInfractores.map((inf, i) => (
-                  <div key={i} className="flex items-center gap-3 p-2 rounded-lg hover:bg-gray-50">
-                    <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: i === 0 ? '#ff8361' : i === 1 ? '#c9c9c9' : i === 2 ? '#cd7f32' : '#f3f4f6', color: i < 3 ? 'white' : '#6b7280' }}>{i + 1}</span>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm truncate font-medium" style={{ color: '#393e41' }}>{inf.name}</p>
-                      <p className="text-xs" style={{ color: '#9ca3af' }}>{inf.count} sanc. • {inf.subsector}</p>
+              <div className="grid grid-cols-5 gap-4">
+                {topConductas.map((cond, i) => (
+                  <div key={i} className="p-4 rounded-lg border" style={{ borderColor: '#e5e5e5', backgroundColor: i === 0 ? '#fef3f2' : '#fafafa' }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: i === 0 ? '#ff8361' : '#e5e7eb', color: i === 0 ? 'white' : '#6b7280' }}>{i + 1}</span>
+                      <span className="text-xs font-semibold px-2 py-0.5 rounded" style={{ backgroundColor: '#a663cc20', color: '#a663cc' }}>{cond.ley}</span>
                     </div>
-                    <span className="text-sm font-bold" style={{ color: '#a663cc' }}>{formatMonto(inf.monto)}</span>
+                    <p className="text-sm font-medium mb-2" style={{ color: '#393e41', lineHeight: '1.4' }}>{cond.name}</p>
+                    <div className="flex justify-between items-center pt-2 border-t" style={{ borderColor: '#e5e5e5' }}>
+                      <span className="text-lg font-bold" style={{ color: '#ff8361' }}>{cond.count}</span>
+                      <span className="text-xs" style={{ color: '#9ca3af' }}>{formatMonto(cond.monto)}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -313,7 +352,7 @@ export default function App() {
           </div>
         )}
 
-        {/* Resumen - Tabla con conducta expandible */}
+        {/* Resumen - Tabla SIN fecha, CON conducta visible */}
         {activeView === 'resumen' && (
           <div className="bg-white rounded-xl border overflow-hidden" style={{ borderColor: '#e5e5e5' }}>
             <div className="p-4 border-b flex items-center gap-4" style={{ borderColor: '#f3f4f6' }}>
@@ -335,35 +374,47 @@ export default function App() {
               <table className="w-full">
                 <thead>
                   <tr style={{ backgroundColor: '#f8f8f8' }}>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase w-8" style={{ color: '#6b7280' }}></th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>#</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>Tipo</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>Entidad</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>Subsector</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>Fecha</th>
-                    <th onClick={() => setSortConfig({ key: 'monto', direction: sortConfig.key === 'monto' && sortConfig.direction === 'desc' ? 'asc' : 'desc' })} className="px-4 py-3 text-left text-xs font-semibold uppercase cursor-pointer" style={{ color: '#6b7280' }}>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase w-8" style={{ color: '#6b7280' }}></th>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase w-12" style={{ color: '#6b7280' }}>#</th>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase w-20" style={{ color: '#6b7280' }}>Tipo</th>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280', width: '25%' }}>Entidad</th>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280', width: '15%' }}>Subsector</th>
+                    <th onClick={() => setSortConfig({ key: 'monto', direction: sortConfig.key === 'monto' && sortConfig.direction === 'desc' ? 'asc' : 'desc' })} className="px-3 py-3 text-left text-xs font-semibold uppercase cursor-pointer w-24" style={{ color: '#6b7280' }}>
                       Monto {sortConfig.key === 'monto' && (sortConfig.direction === 'desc' ? '↓' : '↑')}
                     </th>
+                    <th className="px-3 py-3 text-left text-xs font-semibold uppercase" style={{ color: '#6b7280' }}>Conducta</th>
                   </tr>
                 </thead>
                 <tbody>
                   {sortedData.filter(s => showCerrados || s.monto > 0).map((sancion, idx) => (
                     <React.Fragment key={sancion.id}>
                       <tr onClick={() => setExpandedRow(expandedRow === sancion.id ? null : sancion.id)} className="cursor-pointer hover:bg-purple-50 border-b" style={{ borderColor: '#f3f4f6', backgroundColor: expandedRow === sancion.id ? '#faf5ff' : 'white' }}>
-                        <td className="px-4 py-3">{expandedRow === sancion.id ? <ChevronDown className="w-4 h-4" style={{ color: '#a663cc' }} /> : <ChevronRight className="w-4 h-4" style={{ color: '#9ca3af' }} />}</td>
-                        <td className="px-4 py-3 text-sm font-mono" style={{ color: '#9ca3af' }}>{idx + 1}</td>
-                        <td className="px-4 py-3">{getTipoBadge(sancion.tipo)}</td>
-                        <td className="px-4 py-3"><p className="text-sm font-medium truncate max-w-xs" style={{ color: '#1b1b1e' }}>{sancion.entidad}</p></td>
-                        <td className="px-4 py-3"><span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border" style={{ backgroundColor: '#f8f8f8', color: '#4d4d4d', borderColor: '#e5e5e5' }}>{sancion.subsector}</span></td>
-                        <td className="px-4 py-3 text-sm whitespace-nowrap" style={{ color: '#6b7280' }}><Calendar className="w-3 h-3 inline mr-1" style={{ color: '#9ca3af' }} />{sancion.fechaImposicion}</td>
-                        <td className="px-4 py-3"><span className="text-sm font-semibold" style={{ color: sancion.monto > 1000000 ? '#a663cc' : '#393e41' }}>{formatMontoFull(sancion.monto)}</span></td>
+                        <td className="px-3 py-3">{expandedRow === sancion.id ? <ChevronDown className="w-4 h-4" style={{ color: '#a663cc' }} /> : <ChevronRight className="w-4 h-4" style={{ color: '#9ca3af' }} />}</td>
+                        <td className="px-3 py-3 text-sm font-mono" style={{ color: '#9ca3af' }}>{idx + 1}</td>
+                        <td className="px-3 py-3">{getTipoBadge(sancion.tipo)}</td>
+                        <td className="px-3 py-3"><p className="text-sm font-medium truncate" style={{ color: '#1b1b1e', maxWidth: '250px' }} title={sancion.entidad}>{sancion.entidad}</p></td>
+                        <td className="px-3 py-3"><span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border truncate" style={{ backgroundColor: '#f8f8f8', color: '#4d4d4d', borderColor: '#e5e5e5', maxWidth: '150px' }} title={sancion.subsector}>{sancion.subsector}</span></td>
+                        <td className="px-3 py-3"><span className="text-sm font-semibold" style={{ color: sancion.monto > 1000000 ? '#a663cc' : '#393e41' }}>{formatMontoFull(sancion.monto)}</span></td>
+                        <td className="px-3 py-3">
+                          <p className="text-sm truncate" style={{ color: '#6b7280', maxWidth: '300px' }} title={sancion.conducta}>
+                            {sancion.conducta}
+                          </p>
+                        </td>
                       </tr>
                       {expandedRow === sancion.id && (
                         <tr style={{ backgroundColor: '#faf5ff' }}>
-                          <td colSpan={7} className="px-4 py-4">
+                          <td colSpan={7} className="px-3 py-4">
                             <div className="ml-8 p-4 rounded-lg" style={{ backgroundColor: '#f3e8ff', border: '1px solid #e9d5ff' }}>
-                              <p className="text-xs font-semibold mb-2" style={{ color: '#7c3aed' }}>CONDUCTA SANCIONADA:</p>
-                              <p className="text-sm" style={{ color: '#4d4d4d' }}>{sancion.conducta}</p>
+                              <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                  <p className="text-xs font-semibold mb-1" style={{ color: '#7c3aed' }}>ENTIDAD COMPLETA:</p>
+                                  <p className="text-sm" style={{ color: '#4d4d4d' }}>{sancion.entidad}</p>
+                                </div>
+                                <div>
+                                  <p className="text-xs font-semibold mb-1" style={{ color: '#7c3aed' }}>CONDUCTA SANCIONADA:</p>
+                                  <p className="text-sm" style={{ color: '#4d4d4d' }}>{sancion.conducta}</p>
+                                </div>
+                              </div>
                             </div>
                           </td>
                         </tr>
