@@ -1,7 +1,7 @@
 {
   "name": "radar-sanciones-cnbv",
   "version": "1.0.0",
-  "description": "Radar de Sanciones CNBV - IMPACTO360 by GMC360/360Educa",
+  "description": "Radar de Sanciones CNBV - IMPACTO360",
   "private": true,
   "type": "module",
   "scripts": {

@@ -1,30 +1,42 @@
-// ============================================
-// CONFIGURACIÓN DE FIREBASE
-// ============================================
-// INSTRUCCIONES:
-// 1. Ve a console.firebase.google.com
-// 2. Crea un proyecto o usa uno existente
-// 3. En Configuración del proyecto > Tus apps > Web
-// 4. Copia los valores de firebaseConfig aquí abajo
-// ============================================
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, getDocs, addDoc, updateDoc, deleteDoc, doc, query, orderBy, setDoc, writeBatch } from "firebase/firestore";
 
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-
-// TODO: Reemplaza estos valores con los de tu proyecto Firebase
 const firebaseConfig = {
-  apiKey: "TU_API_KEY_AQUI",
-  authDomain: "tu-proyecto.firebaseapp.com",
-  projectId: "tu-proyecto",
-  storageBucket: "tu-proyecto.appspot.com",
-  messagingSenderId: "123456789",
-  appId: "1:123456789:web:abcdef123456"
+  apiKey: "AIzaSyAUI6vhKXXO7Hpxjxx72xH_iLsdh-1LNQo",
+  authDomain: "social-tracker360.firebaseapp.com",
+  projectId: "social-tracker360",
+  storageBucket: "social-tracker360.firebasestorage.app",
+  messagingSenderId: "182243011028",
+  appId: "1:182243011028:web:a410604502b81dfa6b8e41"
 };
 
-// Inicializar Firebase
 const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-// Inicializar Firestore
-export const db = getFirestore(app);
+// ============ SANCIONES CNBV ============
+export const getSanciones = async () => {
+  const q = query(collection(db, "sanciones_cnbv"), orderBy("fechaImposicion", "desc"));
+  const snapshot = await getDocs(q);
+  return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+};
 
-export default app;
+export const addSancion = async (data) => {
+  const docRef = await addDoc(collection(db, "sanciones_cnbv"), data);
+  return { id: docRef.id, ...data };
+};
+
+export const addSancionesBatch = async (sanciones) => {
+  const batch = writeBatch(db);
+  sanciones.forEach(sancion => {
+    const docRef = doc(collection(db, "sanciones_cnbv"));
+    batch.set(docRef, sancion);
+  });
+  await batch.commit();
+};
+
+export const deleteSancion = async (id) => {
+  const docRef = doc(db, "sanciones_cnbv", id);
+  await deleteDoc(docRef);
+};
+
+export { db };

@@ -2,38 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Variables de colores 360EDUCA */
-:root {
-  --color-violeta: #a663cc;
-  --color-coral: #ff8361;
-  --color-gris: #4d4d4d;
-  --color-oscuro: #393e41;
-  --color-verde: #87d895;
-  --color-negro: #1b1b1e;
-}
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #a663cc;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #8b4db8;
-}
+body { font-family: 'Inter', sans-serif; }
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #a663cc; border-radius: 4px; }

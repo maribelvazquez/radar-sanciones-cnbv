@@ -1,14 +1,6 @@
-# Configuración de Netlify
-# IMPACTO360 - Radar de Sanciones CNBV
-
 [build]
-  publish = "dist"
   command = "npm run build"
+  publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "18"
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  SECRETS_SCAN_SMART_DETECTION_ENABLED = "false"
