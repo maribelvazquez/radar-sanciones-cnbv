@@ -1,0 +1,7 @@
+node_modules
+dist
+__pycache__
+.DS_Store
+# El Excel de la CNBV nunca entra al repo
+*.xlsx
+*.xls
