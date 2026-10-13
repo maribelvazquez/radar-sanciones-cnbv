@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Search, AlertTriangle, Building2, Download, Database, ChevronDown, ChevronRight, Filter, Scale } from 'lucide-react';
+import { Search, AlertTriangle, Building2, Download, ChevronDown, ChevronRight, Filter, Scale } from 'lucide-react';
 
 // ============================================
 // DATOS: public/data/meses.json (índice) y public/data/sanciones/AAAA-MM.json
@@ -158,14 +158,11 @@ export default function App() {
               </div>
               <div>
                 <h1 className="text-xl font-bold" style={{ color: '#1b1b1e' }}>Radar de Sanciones CNBV</h1>
-                <p className="text-sm font-medium" style={{ color: '#a663cc' }}>IMPACTO360 • Bonus Marzo 2026</p>
+                <p className="text-sm font-medium" style={{ color: '#a663cc' }}>IMPACTO360</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <span className="text-sm" style={{ color: '#4d4d4d' }}>{fechaHoy}</span>
-              <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium" style={{ color: '#4d4d4d' }}>
-                <Database className="w-4 h-4" /> Firebase
-              </button>
             </div>
           </div>
         </div>
