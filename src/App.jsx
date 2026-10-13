@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { FOCOS, focoDe } from './focosPLD.js';
 import { Search, AlertTriangle, Building2, Download, ChevronDown, ChevronRight, Filter, Scale } from 'lucide-react';
 
 // ============================================
@@ -21,6 +22,7 @@ const MES_CON_INSIGHTS = '2026-02';
 export default function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedSubsector, setSelectedSubsector] = useState('');
+  const [selectedFoco, setSelectedFoco] = useState('');
   const [selectedMes, setSelectedMes] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: 'monto', direction: 'desc' });
   const [expandedRow, setExpandedRow] = useState(null);
@@ -64,6 +66,7 @@ export default function App() {
   const cambiarMes = (id) => {
     setSelectedMes(id);
     setSelectedSubsector('');
+    setSelectedFoco('');
     setExpandedRow(null);
   };
 
@@ -119,9 +122,25 @@ export default function App() {
     return datosPorMes.filter(s => {
       const matchesSearch = s.entidad.toLowerCase().includes(searchTerm.toLowerCase()) || s.conducta.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesSubsector = !selectedSubsector || s.subsector === selectedSubsector;
-      return matchesSearch && matchesSubsector;
+      const foco = selectedFoco ? focoDe(s.conducta) : null;
+      const matchesFoco = !selectedFoco || (selectedFoco === 'pld' ? foco !== null : foco === selectedFoco);
+      return matchesSearch && matchesSubsector && matchesFoco;
     });
-  }, [datosPorMes, searchTerm, selectedSubsector]);
+  }, [datosPorMes, searchTerm, selectedSubsector, selectedFoco]);
+
+  // Lectura editorial PLD: se calcula sobre el período elegido (ver src/focosPLD.js)
+  const lecturaPLD = useMemo(() => {
+    const porFoco = Object.fromEntries(FOCOS.map(f => [f.id, { count: 0, monto: 0, entidades: new Set() }]));
+    const entidadesPLD = new Set();
+    let count = 0, monto = 0;
+    datosPorMes.forEach(s => {
+      const id = focoDe(s.conducta);
+      if (!id) return;
+      porFoco[id].count++; porFoco[id].monto += s.monto; porFoco[id].entidades.add(s.entidad);
+      entidadesPLD.add(s.entidad); count++; monto += s.monto;
+    });
+    return { porFoco, count, monto, entidades: entidadesPLD.size };
+  }, [datosPorMes]);
 
   const sortedData = useMemo(() => {
     return [...filteredData].sort((a, b) => {
@@ -224,7 +243,7 @@ export default function App() {
         {/* Tabs */}
         <div className="bg-white rounded-xl border p-2 mb-6" style={{ borderColor: '#e5e5e5' }}>
           <div className="flex items-center gap-2">
-            {[{ id: 'dashboard', label: 'Dashboard', icon: '📊' }, { id: 'resumen', label: `Resumen (${stats.total})`, icon: '📋' }, { id: 'analisis', label: 'Análisis', icon: '🔍' }].map(tab => (
+            {[{ id: 'dashboard', label: 'Dashboard', icon: '📊' }, { id: 'resumen', label: `Resumen (${stats.total})`, icon: '📋' }, { id: 'analisis', label: 'Análisis', icon: '🔍' }, { id: 'lecciones', label: 'Lecciones para auditoría', icon: '🎯' }].map(tab => (
               <button key={tab.id} onClick={() => setActiveView(tab.id)}
                 className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
                 style={activeView === tab.id ? { background: 'linear-gradient(135deg, #a663cc, #8b4db8)', color: 'white', boxShadow: '0 4px 14px rgba(166,99,204,0.35)' } : { color: '#4d4d4d' }}>
@@ -317,6 +336,11 @@ export default function App() {
               <select value={selectedSubsector} onChange={(e) => setSelectedSubsector(e.target.value)} className="px-3 py-2 text-sm border rounded-lg" style={{ backgroundColor: '#f8f8f8', borderColor: '#e5e5e5' }}>
                 <option value="">Todos los subsectores</option>
                 {subsectores.map(s => <option key={s} value={s}>{s}</option>)}
+              </select>
+              <select value={selectedFoco} onChange={(e) => setSelectedFoco(e.target.value)} className="px-3 py-2 text-sm border rounded-lg" style={{ backgroundColor: '#f8f8f8', borderColor: '#e5e5e5' }}>
+                <option value="">Todas las conductas</option>
+                <option value="pld">Solo conductas PLD (lectura IMPACTO360)</option>
+                {FOCOS.map(f => <option key={f.id} value={f.id}>{f.titulo}</option>)}
               </select>
               <div className="flex items-center gap-2">
                 <label className="relative inline-flex items-center cursor-pointer">
@@ -427,6 +451,60 @@ export default function App() {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Lecciones para auditoría (lectura editorial PLD) */}
+        {activeView === 'lecciones' && (
+          <div className="space-y-6">
+            <div className="rounded-xl border p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
+              <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>🎯 Lecciones para auditoría: lo que la CNBV sanciona en materia de PLD</h3>
+              <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>
+                La multa rara vez llega por el caso sofisticado: llega por el control básico que no se pudo demostrar. Estos son los cinco focos donde se concentran las sanciones, con las cifras del período elegido ({selectedMes === 'todos' ? 'Acumulado 2026' : (mesActual ? mesActual.nombre : '')}).
+              </p>
+              <p className="text-xs leading-relaxed mt-3" style={{ color: '#6b7280' }}>
+                Lectura editorial IMPACTO360: el Registro de la CNBV no etiqueta las sanciones como PLD. Agrupamos por lo que dice la conducta sancionada; las cifras salen del Registro. Cada registro es una sanción, no necesariamente un caso distinto.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-4 gap-4">
+              {[
+                { label: 'SANCIONES PLD', value: lecturaPLD.count, sub: 'Registros', color: '#a663cc' },
+                { label: '% DEL PERÍODO', value: `${stats.total > 0 ? (lecturaPLD.count / stats.total * 100).toFixed(0) : 0}%`, sub: `de ${stats.total} sanciones`, color: '#ff8361' },
+                { label: 'MONTO PLD', value: formatMonto(lecturaPLD.monto), sub: `${stats.totalMonto > 0 ? (lecturaPLD.monto / stats.totalMonto * 100).toFixed(0) : 0}% del monto total`, color: '#87d895' },
+                { label: 'ENTIDADES', value: lecturaPLD.entidades, sub: 'Únicas', color: '#a663cc' }
+              ].map((card, i) => (
+                <div key={i} className="bg-white rounded-xl border p-4" style={{ borderColor: '#e5e5e5' }}>
+                  <p className="text-xs font-semibold" style={{ color: '#9ca3af' }}>{card.label}</p>
+                  <p className="text-2xl font-bold" style={{ color: card.color }}>{card.value}</p>
+                  <p className="text-xs" style={{ color: '#9ca3af' }}>{card.sub}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-3 gap-4">
+              {[...FOCOS].sort((a, b) => lecturaPLD.porFoco[b.id].count - lecturaPLD.porFoco[a.id].count).map(foco => {
+                const d = lecturaPLD.porFoco[foco.id];
+                return (
+                  <div key={foco.id} className="bg-white rounded-xl border p-5 flex flex-col" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: foco.color }}>
+                    <h4 className="text-sm font-semibold mb-3" style={{ color: '#1b1b1e' }}>{foco.icono} {foco.titulo}</h4>
+                    <div className="grid grid-cols-3 gap-2 mb-3">
+                      <div><p className="text-xl font-bold" style={{ color: foco.color }}>{d.count}</p><p className="text-xs" style={{ color: '#9ca3af' }}>Sanciones</p></div>
+                      <div><p className="text-xl font-bold" style={{ color: '#1b1b1e' }}>{formatMonto(d.monto)}</p><p className="text-xs" style={{ color: '#9ca3af' }}>Monto</p></div>
+                      <div><p className="text-xl font-bold" style={{ color: '#1b1b1e' }}>{d.count > 0 ? formatMonto(d.monto / d.count) : '—'}</p><p className="text-xs" style={{ color: '#9ca3af' }}>Promedio</p></div>
+                    </div>
+                    <div className="h-2 rounded-full overflow-hidden mb-1" style={{ backgroundColor: '#f3f4f6' }}>
+                      <div className="h-full rounded-full" style={{ width: `${lecturaPLD.count > 0 ? (d.count / lecturaPLD.count * 100) : 0}%`, backgroundColor: foco.color }} />
+                    </div>
+                    <p className="text-xs mb-3" style={{ color: '#9ca3af' }}>{lecturaPLD.count > 0 ? (d.count / lecturaPLD.count * 100).toFixed(0) : 0}% de las sanciones PLD · {d.entidades.size} entidades</p>
+                    <p className="text-xs leading-relaxed flex-1" style={{ color: '#4d4d4d' }}><span className="font-semibold" style={{ color: foco.color }}>Qué revisar: </span>{foco.revisar}</p>
+                    <button onClick={() => { setSelectedFoco(foco.id); setShowCerrados(true); setActiveView('resumen'); }} className="mt-4 text-xs font-medium text-left" style={{ color: '#a663cc' }}>
+                      Ver estos {d.count} registros →
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}
