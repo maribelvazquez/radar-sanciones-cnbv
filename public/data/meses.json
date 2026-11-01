@@ -52,5 +52,11 @@
   "nombre": "Septiembre 2026",
   "fechaPublicacion": "17 de septiembre de 2026",
   "registros": 372
+ },
+ {
+  "id": "2026-10",
+  "nombre": "Octubre 2026",
+  "fechaPublicacion": "15 de octubre de 2026",
+  "registros": 399
  }
 ]
