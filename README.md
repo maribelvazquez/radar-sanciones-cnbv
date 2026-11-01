@@ -21,7 +21,7 @@ Los datos ya **no** se pegan en `src/App.jsx`: viven como JSON estático en `pub
    ```
    El script escribe `public/data/sanciones/AAAA-MM.json` y reconstruye `public/data/meses.json`. Puede correrse varias veces sin duplicar datos. Al final imprime registros y suma de montos por mes contra el Excel, y falla si algo no cuadra o si aparece un tipo de sanción no previsto.
 4. **Revisión:** `npm run build` debe pasar, y se revisa la vista previa de la rama que genera Netlify.
-5. **Merge a `main`** solo con el visto bueno de Egisto. Netlify despliega automáticamente.
+5. **Merge a `main`** con el visto bueno de Maribel (no se requiere el de nadie más). Netlify despliega automáticamente.
 
 ### Estructura de datos
 
