@@ -1,0 +1,39 @@
+{
+ "mes": "2026-01",
+ "alertas": [
+  {
+   "titulo": "🔍 GBM concentra un tercio del mes",
+   "texto": "GBM Grupo Bursátil Mexicano recibe 9 sanciones por $16.4M, el 34% del monto de enero ($48.3M). Destacan deficiencias en sistemas automatizados de monitoreo (4) y en el área de cumplimiento (2).",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "🛡️ Un arranque con perfil PLD",
+   "texto": "37 de las 91 sanciones caen en focos de PLD y suman $31.3M, casi dos tercios del monto. Monitoreo, identificación de clientes y área de cumplimiento son lo más caro del mes.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🗂️ Reportes en el sector auxiliar",
+   "texto": "La conducta más repetida es la omisión o presentación extemporánea de reportes regulatorios: 18 sanciones a entidades auxiliares, con centros cambiarios (11) y transmisores de dinero (6) al frente.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "🏦 Control interno y expedientes",
+   "texto": "Banco Shinhan suma 8 sanciones por deficiencias en control interno. Banco del Bajío y GBM reciben $2.9M cada uno por información incompleta o desactualizada de identificación de clientes.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Probar el monitoreo",
+   "texto": "En intermediarios bursátiles, el sistema automatizado debe demostrar que detecta, alerta y reporta. Conviene una prueba con casos reales, no sólo la ficha técnica."
+  },
+  {
+   "titulo": "2. Calendario de reportes",
+   "texto": "Para centros cambiarios y transmisores: calendario con responsable y acuse de cada envío. La omisión es la falta más frecuente del mes."
+  },
+  {
+   "titulo": "3. Expediente vigente",
+   "texto": "Revisar una muestra de expedientes de clientes contra los requisitos de identificación. La información desactualizada se multa igual que la faltante."
+  }
+ ]
+}

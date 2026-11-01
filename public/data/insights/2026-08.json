@@ -1,0 +1,39 @@
+{
+ "mes": "2026-08",
+ "alertas": [
+  {
+   "titulo": "🛡️ El área de cumplimiento se encarece",
+   "texto": "15 sanciones por deficiencias del área de cumplimiento en entidades auxiliares suman $11.0M, la conducta más cara del mes. Anticipa el salto de octubre (41).",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "📁 Monex Operadora de Fondos encabeza",
+   "texto": "8 sanciones por $8.3M, entre ellas administración de activos ($3.1M) y eventos relevantes ($2.1M). LFI suma 16 sanciones en el mes.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🏦 Banco Forjadores reincide",
+   "texto": "15 sanciones por $6.4M, 11 por régimen regulatorio y prudencial. En abril ya había recibido 12 por $6.9M.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "📈 Sofipos bajo la lupa",
+   "texto": "LACP llega a 38 sanciones, la cifra más alta del año, casi todas a sociedades financieras populares: régimen prudencial, registro contable y entrega de información.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Fortalecer el área de cumplimiento",
+   "texto": "Recursos, independencia y reportes al órgano de gobierno, con evidencia. Agosto y octubre muestran que es la nueva prioridad de supervisión."
+  },
+  {
+   "titulo": "2. Remediación documentada",
+   "texto": "Quien ya fue sancionado necesita demostrar que corrigió. Forjadores muestra el costo de no hacerlo."
+  },
+  {
+   "titulo": "3. Sofipos: información a tiempo",
+   "texto": "Calendario de entregas a la CNBV y registro contable completo de cada operación."
+  }
+ ]
+}

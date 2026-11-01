@@ -1,0 +1,39 @@
+{
+ "mes": "2026-04",
+ "alertas": [
+  {
+   "titulo": "🌊 Primera ola de reportes",
+   "texto": "118 sanciones por omisión o presentación extemporánea de reportes regulatorios suman $39.9M. Casi la mitad de las sanciones del mes son por esta sola conducta.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "🏦 Banca Afirme, el caso del mes",
+   "texto": "26 sanciones por $29.9M, más de la cuarta parte del monto de abril: 11 por reportes y 10 por medidas y procedimientos. Con $40.6M acumulados, es la tercera entidad más sancionada del año.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "💼 Asesores en inversión en la mira",
+   "texto": "AM Advisors, asesor en inversiones independiente, recibe 5 sanciones por $10.9M, con multas de $3.26M (las más altas del mes) por monitoreo e identificación de clientes.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "📊 El mes PLD por excelencia",
+   "texto": "152 de 259 sanciones caen en focos de PLD y suman $71.7M, el 65% del monto. Es la cifra PLD más alta de todo 2026.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Reportes con acuse",
+   "texto": "Calendario de reportes con responsable, fecha límite y acuse de cada envío. Abril muestra que la CNBV sanciona estas omisiones en bloque."
+  },
+  {
+   "titulo": "2. Asesores también son sujetos",
+   "texto": "Los asesores en inversiones independientes deben demostrar monitoreo y expedientes de clientes igual que una entidad financiera. Las multas lo dejan claro."
+  },
+  {
+   "titulo": "3. Manual contra práctica",
+   "texto": "22 sanciones por medidas y procedimientos: tomar un procedimiento del manual y reconstruir un caso real que lo cumpla."
+  }
+ ]
+}

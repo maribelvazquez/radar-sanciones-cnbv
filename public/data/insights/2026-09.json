@@ -1,0 +1,39 @@
+{
+ "mes": "2026-09",
+ "alertas": [
+  {
+   "titulo": "📈 Récord del año (hasta entonces)",
+   "texto": "372 sanciones, $146.9M y 172 entidades: el mes más grande de 2026 hasta ese momento, superado sólo por octubre.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "🗂️ Segunda ola de reportes",
+   "texto": "109 sanciones por omisión o presentación extemporánea de reportes ($25.4M), sobre todo a sofomes no reguladas (69) y centros cambiarios (36). Repite el patrón de abril.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🏦 GBM regresa",
+   "texto": "Grupo Bursátil Mexicano suma 18 sanciones por $11.3M, 7 por administración integral de riesgos. En enero había encabezado el mes con $16.4M.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "🏦 Banamex y Ualá, reincidentes",
+   "texto": "Banamex recibe 16 sanciones por $10.4M; Ualá, 4 por $7.0M, sobre todo por calificación de cartera. Ambos aparecen en seis meses o más del año.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Reportes: no esperar la ola",
+   "texto": "La CNBV sanciona omisiones de reportes en bloque (abril y septiembre). Revisar hoy los acuses de todo el año."
+  },
+  {
+   "titulo": "2. Riesgos con evidencia",
+   "texto": "Administración integral de riesgos: límites, excesos y reportes al consejo documentados."
+  },
+  {
+   "titulo": "3. Revelación al mercado",
+   "texto": "Emisoras: 9 sanciones por omitir difundir información relevante ($8.4M). Protocolo de eventos relevantes con plazos."
+  }
+ ]
+}

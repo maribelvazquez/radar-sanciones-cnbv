@@ -1,0 +1,39 @@
+{
+ "mes": "2026-03",
+ "alertas": [
+  {
+   "titulo": "📉 El mes más ligero del año",
+   "texto": "$25.3M en 123 sanciones: una cuarta parte del monto de febrero ($106.8M). El volumen se sostiene, pero las multas bajan a un promedio de $206K por sanción.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "🤝 Cooperativas al frente en volumen",
+   "texto": "LRASCAP es la ley más aplicada del mes, con 38 sanciones que sólo suman $1.8M. Caja de Ahorro de los Telefonistas recibe 19, 14 por observancia del régimen regulatorio y prudencial.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🏦 Scotiabank encabeza el monto",
+   "texto": "Scotiabank Inverlat suma 16 sanciones por $4.9M: 11 por observancia del régimen regulatorio y 4 por omitir información y documentación solicitada por la CNBV.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "⚠️ Señales de solvencia",
+   "texto": "La multa individual más alta es a Banco Covalto ($2.9M), por un plan de contingencia que no cumple los requisitos. Ualá aparece por primera vez en el año ($1.6M, proceso crediticio) y volverá a ser sancionado en cinco meses más.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Plan de contingencia completo",
+   "texto": "Verificar que el plan para restablecer la situación financiera cumpla todos los requisitos y esté actualizado. Es una multa de casi $3M por un documento."
+  },
+  {
+   "titulo": "2. Régimen prudencial con evidencia",
+   "texto": "Cooperativas y uniones de crédito: dejar constancia mensual de indicadores y límites. Lo que no se documenta, la autoridad lo sanciona como incumplido."
+  },
+  {
+   "titulo": "3. Requerimientos completos y a tiempo",
+   "texto": "Responder cada solicitud de la CNBV completa y dentro del plazo. La omisión de información se sanciona aparte de la falta de fondo."
+  }
+ ]
+}

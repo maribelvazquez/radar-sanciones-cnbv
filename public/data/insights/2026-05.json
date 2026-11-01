@@ -1,0 +1,39 @@
+{
+ "mes": "2026-05",
+ "alertas": [
+  {
+   "titulo": "🏦 Banco Multiva encabeza",
+   "texto": "14 sanciones por $10.4M, con deficiencias en el área de cumplimiento (4) y en reportes regulatorios (3) entre las más repetidas.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "💼 Asesores, segundo mes seguido",
+   "texto": "Stratos Asesores recibe 4 sanciones por $9.9M, con multas de $3.1M por identificación de clientes y monitoreo. Por segundo mes, un asesor independiente está entre los más sancionados.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "📢 Información al público inversionista",
+   "texto": "Value Grupo Financiero suma $7.9M en 3 sanciones por omitir informar al público inversionista movimientos y cambios en su operación: la conducta más cara del mes.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "📁 Fondos de inversión",
+   "texto": "LFI pasa de 1 sanción en abril a 11 en mayo. SAM Asset Management recibe 7 por $7.5M, por documentación no presentada en revisión y listas de clientes desactualizadas.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Área de cumplimiento demostrable",
+   "texto": "Recursos, reportes al órgano de gobierno y seguimiento de observaciones: la evidencia de que el área opera, no sólo de que existe."
+  },
+  {
+   "titulo": "2. KYC en asesoría de inversiones",
+   "texto": "Revisar expedientes y perfil de clientes en asesores independientes. Mayo confirma la tendencia de abril."
+  },
+  {
+   "titulo": "3. Eventos relevantes a tiempo",
+   "texto": "Emisoras y grupos financieros: protocolo para identificar y difundir cambios en la operación dentro del plazo."
+  }
+ ]
+}

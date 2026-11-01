@@ -1,0 +1,39 @@
+{
+ "mes": "2026-07",
+ "alertas": [
+  {
+   "titulo": "🤝 Cooperativas: un tercio del mes",
+   "texto": "67 sanciones bajo LRASCAP, el 35% del total y la cifra más alta del año para esta ley, aunque sólo suman $4.7M.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "📁 Fondos y distribuidoras",
+   "texto": "LFI llega a 18 sanciones. Banca Mifel suma $10.8M en 8, con multas de $2.7M por no informar rendimientos a clientes y por no conservar grabaciones; Fintual Distribuidora, $4.4M, sobre todo por KYC.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🏦 PLD en casa de bolsa",
+   "texto": "Scotia Inverlat Casa de Bolsa recibe 5 sanciones por $7.7M por medidas y procedimientos y análisis de operaciones de clientes: la conducta más cara del mes.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "🏦 Banca: liquidez y régimen",
+   "texto": "Bank of China México recibe la multa individual más alta ($3.26M), por el coeficiente de cobertura de liquidez. Banamex suma 13 sanciones por $6.1M.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Distribución de fondos",
+   "texto": "Revisar información a clientes, conservación de grabaciones y cumplimiento de requisitos en la distribución de fondos. LFI dejó de ser un frente menor."
+  },
+  {
+   "titulo": "2. KYC en plataformas digitales",
+   "texto": "Distribuidoras fintech: el alta digital de clientes debe sostener la misma identificación que un expediente tradicional."
+  },
+  {
+   "titulo": "3. Régimen prudencial en cooperativas",
+   "texto": "Indicadores, límites y su evidencia mensual. El volumen de julio muestra supervisión sistemática del sector."
+  }
+ ]
+}

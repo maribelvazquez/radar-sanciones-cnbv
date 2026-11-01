@@ -1,0 +1,39 @@
+{
+ "mes": "2026-06",
+ "alertas": [
+  {
+   "titulo": "🏦 Bankaool encabeza el mes",
+   "texto": "14 sanciones por $23.4M: registros contables incorrectos (6) y calificación de cartera (3). Acumula $42.8M en el año, segundo lugar entre las entidades más sancionadas.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "🏦 Banco del Bajío, frente doble",
+   "texto": "22 sanciones por $16.0M: 8 por régimen regulatorio y prudencial y 8 por operaciones con valores por cuenta propia (LMV).",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "⚖️ Mes prudencial, no PLD",
+   "texto": "Calificación de cartera y reservas (4 sanciones, $11.8M) y administración integral de riesgos (8, $10.7M) son lo más caro del mes. Los focos de PLD apenas suman $19.9M en 36 sanciones.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "🤝 Una cooperativa con monto de banco",
+   "texto": "Caja Popular La Providencia recibe 14 sanciones por $7.5M, 4 de ellas por deficiencias en monitoreo de operaciones.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Cartera y reservas",
+   "texto": "Revisar la metodología de calificación y las reservas preventivas contra la normativa vigente. Entre las conductas frecuentes, es la de multa promedio más alta del año (cerca de $2.8M)."
+  },
+  {
+   "titulo": "2. Administración integral de riesgos",
+   "texto": "Límites, reportes al consejo y seguimiento de excesos documentados. Ocho sanciones en un mes no son casualidad."
+  },
+  {
+   "titulo": "3. Conciliación contable",
+   "texto": "Registros contables incorrectos: conciliar cuentas críticas y documentar ajustes antes de que lo haga la supervisión."
+  }
+ ]
+}

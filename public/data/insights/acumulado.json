@@ -1,0 +1,39 @@
+{
+ "mes": "acumulado",
+ "alertas": [
+  {
+   "titulo": "💰 Más de mil millones en diez meses",
+   "texto": "De enero a octubre, la CNBV publicó 2,188 sanciones a 610 entidades por $1,018.8M. La banca múltiple concentra $430.2M en 549 sanciones.",
+   "color": "#ff8361"
+  },
+  {
+   "titulo": "📈 La supervisión se acelera",
+   "texto": "De julio a octubre (cuatro meses) se sancionaron $561.0M, más que en todo enero-junio ($457.8M, seis meses). Septiembre y octubre fueron récords consecutivos.",
+   "color": "#a663cc"
+  },
+  {
+   "titulo": "🔁 Reincidencia",
+   "texto": "Banamex aparece en 7 de 10 meses (62 sanciones, $46.3M sumando las variantes de su nombre en el registro). Ualá, en 6 ($32.5M). Bankaool ($42.8M) y Banca Afirme ($40.6M) completan el grupo de mayor monto.",
+   "color": "#64c27b"
+  },
+  {
+   "titulo": "🗂️ Lo más frecuente y lo más caro",
+   "texto": "Los reportes regulatorios son la conducta más frecuente: 373 sanciones ($107.4M), en olas (118 en abril, 110 en septiembre). Entre las conductas con 20 sanciones o más, la más cara es la calificación de cartera y reservas: 21 sanciones, $58.6M, unos $2.8M por sanción.",
+   "color": "#393e41"
+  }
+ ],
+ "recomendaciones": [
+  {
+   "titulo": "1. Reportes: la falta más evitable",
+   "texto": "Una de cada seis sanciones del año es por reportes omitidos o tardíos. Calendario con responsable y acuse de cada envío."
+  },
+  {
+   "titulo": "2. Remediación demostrable",
+   "texto": "La reincidencia muestra que la autoridad vuelve. Cada observación cerrada necesita evidencia de la corrección, no sólo un plan."
+  },
+  {
+   "titulo": "3. PLD es un tercio del riesgo",
+   "texto": "Los focos de PLD suman 707 sanciones y $326.9M, cerca del 32% del año. El resto es prudencial y contable: cartera, régimen regulatorio y registros."
+  }
+ ]
+}
