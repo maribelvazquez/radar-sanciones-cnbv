@@ -14,8 +14,9 @@ const cargarJSON = async (ruta) => {
   return res.json();
 };
 
-// Los textos de la pestaña Análisis siguen fijos (son de febrero) hasta que cada mes tenga su archivo en public/data/insights/
-const MES_CON_INSIGHTS = '2026-02';
+// Pestaña Análisis: lectura editorial por mes en public/data/insights/AAAA-MM.json
+// ({ mes, alertas: [{ titulo, texto, color }], recomendaciones: [{ titulo, texto }] }).
+// Se escriben a mano (no los genera el script). Si un mes no tiene archivo, se muestra «en preparación».
 
 
 // Componente principal
@@ -32,6 +33,7 @@ export default function App() {
   const [datosCargados, setDatosCargados] = useState({});
   const [cargando, setCargando] = useState(true);
   const [errorCarga, setErrorCarga] = useState(null);
+  const [insights, setInsights] = useState({}); // mes -> objeto, o null si no hay análisis
 
   // Índice de meses: el mes por defecto es el más reciente
   useEffect(() => {
@@ -62,6 +64,17 @@ export default function App() {
       .catch(e => { if (!cancelado) { setErrorCarga(e.message); setCargando(false); } });
     return () => { cancelado = true; };
   }, [selectedMes, meses, datosCargados]);
+
+  // Análisis editorial del mes: se pide al abrir la pestaña; sin archivo = en preparación
+  useEffect(() => {
+    if (activeView !== 'analisis' || !selectedMes || selectedMes === 'todos' || selectedMes in insights) return;
+    let cancelado = false;
+    cargarJSON(`insights/${selectedMes}.json`)
+      .then(datos => (Array.isArray(datos.alertas) ? datos : null))
+      .catch(() => null)
+      .then(datos => { if (!cancelado) setInsights(prev => ({ ...prev, [selectedMes]: datos })); });
+    return () => { cancelado = true; };
+  }, [activeView, selectedMes, insights]);
 
   const cambiarMes = (id) => {
     setSelectedMes(id);
@@ -414,7 +427,10 @@ export default function App() {
         )}
 
         {/* Análisis */}
-        {activeView === 'analisis' && selectedMes !== MES_CON_INSIGHTS && (
+        {activeView === 'analisis' && selectedMes !== 'todos' && insights[selectedMes] === undefined && (
+          <div className="bg-white rounded-xl border p-6 text-sm" style={{ borderColor: '#e5e5e5', color: '#6b7280' }}>Cargando análisis…</div>
+        )}
+        {activeView === 'analisis' && (selectedMes === 'todos' || insights[selectedMes] === null) && (
           <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: '#a663cc' }}>
             <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>🔍 Análisis en preparación</h3>
             <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>
@@ -422,36 +438,30 @@ export default function App() {
             </p>
           </div>
         )}
-        {activeView === 'analisis' && selectedMes === MES_CON_INSIGHTS && (
+        {activeView === 'analisis' && selectedMes !== 'todos' && insights[selectedMes] && (
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-6">
-              {[
-                { title: '🔥 Señal de Alerta: Banamex bajo la lupa', text: 'Banamex acumula 18 sanciones en Febrero (~$25M), dominando el ranking. Concentración inusual en reportes regulatorios y análisis de clientes.', color: '#ff8361' },
-                { title: '🏦 Nuevo Actor: Banco S3 México', text: 'Banco S3 aparece con 16 sanciones por $14.5M, principalmente por cartera crediticia, reservas preventivas y registros contables. Señal de alerta para el sector.', color: '#a663cc' },
-                { title: '💳 LTOSF Emergente: Banorte', text: 'Banorte recibe 10 sanciones por Ley de Transparencia en Operaciones del Sistema Financiero, relacionadas con redes de pagos con tarjeta y receptores de pagos.', color: '#87d895' },
-                { title: '⚖️ Marco Legal: LIC domina', text: 'LIC lidera en Banca Múltiple; LACP protagoniza en SOFIPO/Populares; LRASCAP activa en cooperativas. LTOSF irrumpe como nuevo frente regulatorio.', color: '#4d4d4d' }
-              ].map((insight, i) => (
-                <div key={i} className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: insight.color }}>
-                  <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>{insight.title}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>{insight.text}</p>
+              {insights[selectedMes].alertas.map((insight, i) => (
+                <div key={i} className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: insight.color || '#a663cc' }}>
+                  <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>{insight.titulo}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>{insight.texto}</p>
                 </div>
               ))}
             </div>
-            <div className="rounded-xl border p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
-              <h3 className="text-sm font-semibold mb-4" style={{ color: '#1b1b1e' }}>💡 Recomendaciones para Compliance Officers</h3>
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { title: '1. Reportes Regulatorios', text: 'Prioridad máxima: verificar entrega oportuna de todos los reportes CNBV. El incumplimiento es el patrón más costoso en Feb 2026.' },
-                  { title: '2. Cartera y Reservas', text: 'Revisar calificación de cartera crediticia y estimaciones preventivas. Banco S3 es la señal de alerta del mes.' },
-                  { title: '3. Redes de Pago (LTOSF)', text: 'Si son adquirentes o agregadores: auditar contratos, monitoreo de controversias y cumplimiento de condiciones de participación.' }
-                ].map((rec, i) => (
-                  <div key={i} className="bg-white/80 rounded-lg p-4">
-                    <p className="font-semibold text-sm mb-1" style={{ color: '#a663cc' }}>{rec.title}</p>
-                    <p className="text-xs" style={{ color: '#4d4d4d' }}>{rec.text}</p>
-                  </div>
-                ))}
+            {(insights[selectedMes].recomendaciones || []).length > 0 && (
+              <div className="rounded-xl border p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
+                <h3 className="text-sm font-semibold mb-4" style={{ color: '#1b1b1e' }}>💡 Recomendaciones para Compliance Officers</h3>
+                <div className="grid grid-cols-3 gap-4">
+                  {insights[selectedMes].recomendaciones.map((rec, i) => (
+                    <div key={i} className="bg-white/80 rounded-lg p-4">
+                      <p className="font-semibold text-sm mb-1" style={{ color: '#a663cc' }}>{rec.titulo}</p>
+                      <p className="text-xs" style={{ color: '#4d4d4d' }}>{rec.texto}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
+            <p className="text-xs" style={{ color: '#9ca3af' }}>Lectura editorial IMPACTO360 sobre el Registro de Sanciones CNBV {mesActual && `• ${mesActual.nombre}`}</p>
           </div>
         )}
 
