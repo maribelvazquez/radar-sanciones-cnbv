@@ -1,0 +1,14 @@
+{
+ "mes": "2026-10",
+ "alertas": [
+  { "titulo": "📈 Récord del año, por segundo mes seguido", "texto": "399 sanciones y $232.3M: el monto más alto de 2026, muy por encima de septiembre ($146.9M), que ya había sido récord. Hay 172 entidades sancionadas, la misma cifra que en septiembre, pero ahora con más multas por entidad y más caras.", "color": "#ff8361" },
+  { "titulo": "🛡️ El área de cumplimiento, en el centro", "texto": "41 sanciones por deficiencias del área de cumplimiento o de su capacitación, contra 7 en septiembre. Casi todas son a centros cambiarios (14), sofomes no reguladas (13) y transmisores de dinero (9). La pregunta ya no es si el reporte llegó, sino si el área que lo produce funciona.", "color": "#a663cc" },
+  { "titulo": "🏦 El dinero grande está en cartera y reservas", "texto": "18 sanciones por calificación de cartera y reservas preventivas suman $33.0M, el bloque más caro del mes. Banco Azteca concentra $10.8M; le siguen Banco Base ($7.8M), Banca Afirme y Ualá ($5.8M cada uno).", "color": "#64c27b" },
+  { "titulo": "⚖️ Integridad de mercado: información falsa", "texto": "Bursamétrica Casa de Bolsa y una persona física reciben $3.9M cada uno por difundir información falsa o que induce al error sobre valores, con la misma fecha de imposición (15-sep-2026). La sanción alcanza también al individuo, no sólo a la entidad.", "color": "#393e41" }
+ ],
+ "recomendaciones": [
+  { "titulo": "1. Demostrar que el área funciona", "texto": "Si eres centro cambiario, transmisor o sofom no regulada: reúne la evidencia de recursos, reportes al órgano de gobierno y constancias de capacitación. Que el área exista en el organigrama no basta." },
+  { "titulo": "2. Cerrar cada alerta", "texto": "24 sanciones por monitoreo y análisis de operaciones, la cifra más alta del año, en ocho entidades (cooperativas y bancos sobre todo). Toma una alerta y sigue su rastro hasta el dictamen documentado." },
+  { "titulo": "3. Cartera y reservas con soporte", "texto": "Revisa la metodología de calificación y la conciliación de reservas contra la contabilidad. Es donde se concentra el monto, aunque no sea tema PLD." }
+ ]
+}

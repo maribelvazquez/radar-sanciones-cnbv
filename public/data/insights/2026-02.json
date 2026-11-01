@@ -1,0 +1,14 @@
+{
+ "mes": "2026-02",
+ "alertas": [
+  { "titulo": "🔥 Señal de Alerta: Banamex bajo la lupa", "texto": "Banamex acumula 18 sanciones en Febrero (~$25M), dominando el ranking. Concentración inusual en reportes regulatorios y análisis de clientes.", "color": "#ff8361" },
+  { "titulo": "🏦 Nuevo Actor: Banco S3 México", "texto": "Banco S3 aparece con 16 sanciones por $14.5M, principalmente por cartera crediticia, reservas preventivas y registros contables. Señal de alerta para el sector.", "color": "#a663cc" },
+  { "titulo": "💳 LTOSF Emergente: Banorte", "texto": "Banorte recibe 10 sanciones por Ley de Transparencia en Operaciones del Sistema Financiero, relacionadas con redes de pagos con tarjeta y receptores de pagos.", "color": "#87d895" },
+  { "titulo": "⚖️ Marco Legal: LIC domina", "texto": "LIC lidera en Banca Múltiple; LACP protagoniza en SOFIPO/Populares; LRASCAP activa en cooperativas. LTOSF irrumpe como nuevo frente regulatorio.", "color": "#4d4d4d" }
+ ],
+ "recomendaciones": [
+  { "titulo": "1. Reportes Regulatorios", "texto": "Prioridad máxima: verificar entrega oportuna de todos los reportes CNBV. El incumplimiento es el patrón más costoso en Feb 2026." },
+  { "titulo": "2. Cartera y Reservas", "texto": "Revisar calificación de cartera crediticia y estimaciones preventivas. Banco S3 es la señal de alerta del mes." },
+  { "titulo": "3. Redes de Pago (LTOSF)", "texto": "Si son adquirentes o agregadores: auditar contratos, monitoreo de controversias y cumplimiento de condiciones de participación." }
+ ]
+}

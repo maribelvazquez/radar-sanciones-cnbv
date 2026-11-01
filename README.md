@@ -29,7 +29,7 @@ Los datos ya **no** se pegan en `src/App.jsx`: viven como JSON estático en `pub
 |------|-----------|
 | `public/data/meses.json` | Índice de meses: `id, nombre, fechaPublicacion, registros` |
 | `public/data/sanciones/AAAA-MM.json` | Registros del mes: `id, mes, entidad, subsector, tipo, monto, conducta, fechaImposicion` |
-| `public/data/insights/AAAA-MM.json` | Reservado para los análisis editoriales por mes |
+| `public/data/insights/AAAA-MM.json` | Análisis editorial del mes (pestaña Análisis): `mes, alertas[{titulo, texto, color}], recomendaciones[{titulo, texto}]`. Se escribe a mano en el chat mensual, después de correr el script; si falta, la pestaña muestra «en preparación» |
 
 - `mes` es el mes de la **Fecha de Publicación** de la CNBV (no el de imposición).
 - **No se edita a mano ningún JSON de datos**: todo sale del script.
