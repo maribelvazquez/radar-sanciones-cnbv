@@ -185,47 +185,47 @@ export default function App() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#fafafa', fontFamily: "'Inter', sans-serif" }}>
       <header className="bg-white border-b" style={{ borderColor: '#e5e5e5' }}>
-        <div className="max-w-7xl mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg" style={{ background: 'linear-gradient(135deg, #a663cc, #8b4db8)' }}>
                 <span className="text-white font-bold text-lg">360</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold" style={{ color: '#1b1b1e' }}>Radar de Sanciones CNBV</h1>
+                <h1 className="text-lg sm:text-xl font-bold" style={{ color: '#1b1b1e' }}>Radar de Sanciones CNBV</h1>
                 <p className="text-sm font-medium" style={{ color: '#a663cc' }}>IMPACTO360</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-sm" style={{ color: '#4d4d4d' }}>{fechaHoy}</span>
+              <span className="text-sm" style={{ color: '#393e41' }}>{fechaHoy}</span>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-6 py-6">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 py-4 sm:py-6">
         {/* Selector de Mes */}
         <div className="bg-white rounded-xl border p-4 mb-6" style={{ borderColor: '#e5e5e5' }}>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3">
             <Filter className="w-4 h-4" style={{ color: '#a663cc' }} />
             <span className="text-sm font-semibold" style={{ color: '#393e41' }}>Período:</span>
             <div className="flex flex-wrap gap-2">
               {meses.map(mes => (
                 <button key={mes.id} onClick={() => cambiarMes(mes.id)}
                   className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                  style={selectedMes === mes.id ? { background: 'linear-gradient(135deg, #a663cc, #8b4db8)', color: 'white', boxShadow: '0 2px 8px rgba(166,99,204,0.3)' } : { backgroundColor: '#f3f4f6', color: '#4d4d4d' }}>
+                  style={selectedMes === mes.id ? { background: 'linear-gradient(135deg, #a663cc, #8b4db8)', color: 'white', boxShadow: '0 2px 8px rgba(166,99,204,0.3)' } : { backgroundColor: '#f3f4f6', color: '#393e41' }}>
                   {mes.nombre}
                 </button>
               ))}
               {meses.length > 1 && (
                 <button onClick={() => cambiarMes('todos')}
                   className="px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                  style={selectedMes === 'todos' ? { background: 'linear-gradient(135deg, #87d895, #5cb85c)', color: 'white' } : { backgroundColor: '#f3f4f6', color: '#4d4d4d' }}>
+                  style={selectedMes === 'todos' ? { background: 'linear-gradient(135deg, #87d895, #5cb85c)', color: 'white' } : { backgroundColor: '#f3f4f6', color: '#393e41' }}>
                   📊 Acumulado 2026
                 </button>
               )}
             </div>
-            {mesActual && <span className="text-xs ml-auto" style={{ color: '#9ca3af' }}>Publicación CNBV: {mesActual.fechaPublicacion}</span>}
+            {mesActual && <span className="text-xs w-full sm:w-auto sm:ml-auto" style={{ color: '#9ca3af' }}>Publicación CNBV: {mesActual.fechaPublicacion}</span>}
           </div>
         </div>
 
@@ -239,7 +239,7 @@ export default function App() {
         )}
 
         {/* Stats */}
-        <div className="grid grid-cols-6 gap-4 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-6">
           {[
             { label: 'TOTAL SANCIONES', value: stats.total, sub: 'Registros', color: '#a663cc' },
             { label: 'ENTIDADES', value: stats.uniqueEntidades, sub: 'Únicas', color: '#a663cc' },
@@ -250,7 +250,7 @@ export default function App() {
           ].map((stat, i) => (
             <div key={i} className="bg-white rounded-xl border p-4 hover:shadow-md transition-shadow" style={{ borderColor: '#e5e5e5' }}>
               <p className="text-xs font-semibold tracking-wide mb-1" style={{ color: '#9ca3af' }}>{stat.label}</p>
-              <p className="text-2xl font-bold" style={{ color: stat.color }}>{stat.value}</p>
+              <p className="text-xl sm:text-2xl font-bold break-words" style={{ color: stat.color }}>{stat.value}</p>
               <p className="text-xs mt-1" style={{ color: '#9ca3af' }}>{stat.sub}</p>
             </div>
           ))}
@@ -258,19 +258,19 @@ export default function App() {
 
         {/* Tabs */}
         <div className="bg-white rounded-xl border p-2 mb-6" style={{ borderColor: '#e5e5e5' }}>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {[{ id: 'dashboard', label: 'Dashboard', icon: '📊' }, { id: 'resumen', label: `Resumen (${stats.total})`, icon: '📋' }, { id: 'analisis', label: 'Análisis', icon: '🔍' }, { id: 'lecciones', label: 'Lecciones para auditoría', icon: '🎯' }].map(tab => (
               <button key={tab.id} onClick={() => setActiveView(tab.id)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
-                style={activeView === tab.id ? { background: 'linear-gradient(135deg, #a663cc, #8b4db8)', color: 'white', boxShadow: '0 4px 14px rgba(166,99,204,0.35)' } : { color: '#4d4d4d' }}>
+                className="flex items-center gap-2 px-3 sm:px-5 py-2.5 rounded-lg text-sm font-semibold transition-all"
+                style={activeView === tab.id ? { background: 'linear-gradient(135deg, #a663cc, #8b4db8)', color: 'white', boxShadow: '0 4px 14px rgba(166,99,204,0.35)' } : { color: '#393e41' }}>
                 <span>{tab.icon}</span>{tab.label}
               </button>
             ))}
-            <div className="flex-1" />
-            <div className="relative">
+            <div className="hidden lg:block flex-1" />
+            <div className="relative w-full lg:w-auto">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: '#9ca3af' }} />
               <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Buscar entidad, conducta..."
-                className="pl-9 pr-4 py-2 w-64 text-sm border rounded-lg focus:outline-none" style={{ backgroundColor: '#f8f8f8', borderColor: '#e5e5e5' }} />
+                className="pl-9 pr-4 py-2 w-full lg:w-64 text-sm border rounded-lg focus:outline-none" style={{ backgroundColor: '#f8f8f8', borderColor: '#e5e5e5' }} />
             </div>
           </div>
         </div>
@@ -279,8 +279,8 @@ export default function App() {
         {activeView === 'dashboard' && (
           <div className="space-y-6">
             {/* Primera fila: Sectores y Top Entidades */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl border p-4 sm:p-6" style={{ borderColor: '#e5e5e5' }}>
                 <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
                   <Building2 className="w-4 h-4" style={{ color: '#a663cc' }} /> Distribución por Sector
                 </h3>
@@ -288,7 +288,7 @@ export default function App() {
                   {bySubsector.slice(0, 6).map((sector, i) => (
                     <div key={i}>
                       <div className="flex justify-between items-center mb-1">
-                        <span className="text-sm truncate pr-4" style={{ color: '#4d4d4d', maxWidth: '200px' }}>{sector.name}</span>
+                        <span className="text-sm truncate pr-4" style={{ color: '#393e41', maxWidth: '60%' }}>{sector.name || 'Sin subsector en el registro CNBV'}</span>
                         <div className="flex items-center gap-2">
                           <span className="text-xs px-1.5 py-0.5 rounded" style={{ backgroundColor: '#f3f4f6', color: '#6b7280' }}>{sector.count}</span>
                           <span className="text-sm font-semibold" style={{ color: '#1b1b1e' }}>{formatMonto(sector.monto)}</span>
@@ -302,7 +302,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
+              <div className="bg-white rounded-xl border p-4 sm:p-6" style={{ borderColor: '#e5e5e5' }}>
                 <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
                   <AlertTriangle className="w-4 h-4" style={{ color: '#ff8361' }} /> Top 10 Entidades por Monto
                 </h3>
@@ -322,11 +322,11 @@ export default function App() {
             </div>
 
             {/* Segunda fila: TOP 5 CONDUCTAS */}
-            <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5' }}>
+            <div className="bg-white rounded-xl border p-4 sm:p-6" style={{ borderColor: '#e5e5e5' }}>
               <h3 className="text-sm font-semibold mb-4 flex items-center gap-2" style={{ color: '#1b1b1e' }}>
                 <Scale className="w-4 h-4" style={{ color: '#ff8361' }} /> Top 5 Conductas Más Sancionadas
               </h3>
-              <div className="grid grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
                 {topConductas.map((cond, i) => (
                   <div key={i} className="p-4 rounded-lg border" style={{ borderColor: '#e5e5e5', backgroundColor: i === 0 ? '#fef3f2' : '#fafafa' }}>
                     <div className="flex items-center gap-2 mb-2">
@@ -348,7 +348,7 @@ export default function App() {
         {/* Resumen - Tabla SIN fecha, CON conducta visible */}
         {activeView === 'resumen' && (
           <div className="bg-white rounded-xl border overflow-hidden" style={{ borderColor: '#e5e5e5' }}>
-            <div className="p-4 border-b flex items-center gap-4" style={{ borderColor: '#f3f4f6' }}>
+            <div className="p-4 border-b flex flex-wrap items-center gap-3" style={{ borderColor: '#f3f4f6' }}>
               <select value={selectedSubsector} onChange={(e) => setSelectedSubsector(e.target.value)} className="px-3 py-2 text-sm border rounded-lg" style={{ backgroundColor: '#f8f8f8', borderColor: '#e5e5e5' }}>
                 <option value="">Todos los subsectores</option>
                 {subsectores.map(s => <option key={s} value={s}>{s}</option>)}
@@ -363,7 +363,7 @@ export default function App() {
                   <input type="checkbox" checked={showCerrados} onChange={() => setShowCerrados(!showCerrados)} className="sr-only peer" />
                   <div className="w-9 h-5 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all" style={{ backgroundColor: showCerrados ? '#a663cc' : '#d1d5db' }} />
                 </label>
-                <span className="text-sm" style={{ color: '#4d4d4d' }}>Mostrar $0 ({datosPorMes.filter(s => s.monto === 0).length})</span>
+                <span className="text-sm" style={{ color: '#393e41' }}>Mostrar $0 ({datosPorMes.filter(s => s.monto === 0).length})</span>
               </div>
               <div className="flex-1" />
               <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium" style={{ color: '#a663cc' }}><Download className="w-4 h-4" /> Exportar Excel</button>
@@ -391,7 +391,7 @@ export default function App() {
                         <td className="px-3 py-3 text-sm font-mono" style={{ color: '#9ca3af' }}>{idx + 1}</td>
                         <td className="px-3 py-3">{getTipoBadge(sancion.tipo)}</td>
                         <td className="px-3 py-3"><p className="text-sm font-medium truncate" style={{ color: '#1b1b1e', maxWidth: '250px' }} title={sancion.entidad}>{sancion.entidad}</p></td>
-                        <td className="px-3 py-3"><span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border truncate" style={{ backgroundColor: '#f8f8f8', color: '#4d4d4d', borderColor: '#e5e5e5', maxWidth: '150px' }} title={sancion.subsector}>{sancion.subsector}</span></td>
+                        <td className="px-3 py-3"><span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium border truncate" style={{ backgroundColor: '#f8f8f8', color: '#393e41', borderColor: '#e5e5e5', maxWidth: '150px' }} title={sancion.subsector}>{sancion.subsector}</span></td>
                         <td className="px-3 py-3"><span className="text-sm font-semibold" style={{ color: sancion.monto > 1000000 ? '#a663cc' : '#393e41' }}>{formatMontoFull(sancion.monto)}</span></td>
                         <td className="px-3 py-3">
                           <p className="text-sm truncate" style={{ color: '#6b7280', maxWidth: '300px' }} title={sancion.conducta}>
@@ -403,14 +403,14 @@ export default function App() {
                         <tr style={{ backgroundColor: '#faf5ff' }}>
                           <td colSpan={7} className="px-3 py-4">
                             <div className="ml-8 p-4 rounded-lg" style={{ backgroundColor: '#f3e8ff', border: '1px solid #e9d5ff' }}>
-                              <div className="grid grid-cols-2 gap-4">
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
                                   <p className="text-xs font-semibold mb-1" style={{ color: '#7c3aed' }}>ENTIDAD COMPLETA:</p>
-                                  <p className="text-sm" style={{ color: '#4d4d4d' }}>{sancion.entidad}</p>
+                                  <p className="text-sm" style={{ color: '#393e41' }}>{sancion.entidad}</p>
                                 </div>
                                 <div>
                                   <p className="text-xs font-semibold mb-1" style={{ color: '#7c3aed' }}>CONDUCTA SANCIONADA:</p>
-                                  <p className="text-sm" style={{ color: '#4d4d4d' }}>{sancion.conducta}</p>
+                                  <p className="text-sm" style={{ color: '#393e41' }}>{sancion.conducta}</p>
                                 </div>
                               </div>
                             </div>
@@ -431,34 +431,34 @@ export default function App() {
 
         {/* Análisis */}
         {activeView === 'analisis' && insightActual === undefined && (
-          <div className="bg-white rounded-xl border p-6 text-sm" style={{ borderColor: '#e5e5e5', color: '#6b7280' }}>Cargando análisis…</div>
+          <div className="bg-white rounded-xl border p-4 sm:p-6 text-sm" style={{ borderColor: '#e5e5e5', color: '#6b7280' }}>Cargando análisis…</div>
         )}
         {activeView === 'analisis' && insightActual === null && (
-          <div className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: '#a663cc' }}>
+          <div className="bg-white rounded-xl border p-4 sm:p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: '#a663cc' }}>
             <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>🔍 Análisis en preparación</h3>
-            <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>
+            <p className="text-sm leading-relaxed" style={{ color: '#393e41' }}>
               El análisis editorial de {selectedMes === 'todos' ? 'este período' : (mesActual ? mesActual.nombre : 'este mes')} está en preparación. Mientras tanto, las cifras del Dashboard y del Resumen ya reflejan el Registro de Sanciones de la CNBV.
             </p>
           </div>
         )}
         {activeView === 'analisis' && insightActual && (
           <div className="space-y-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {insightActual.alertas.map((insight, i) => (
-                <div key={i} className="bg-white rounded-xl border p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: insight.color || '#a663cc' }}>
+                <div key={i} className="bg-white rounded-xl border p-4 sm:p-6" style={{ borderColor: '#e5e5e5', borderLeftWidth: '4px', borderLeftColor: insight.color || '#a663cc' }}>
                   <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>{insight.titulo}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>{insight.texto}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: '#393e41' }}>{insight.texto}</p>
                 </div>
               ))}
             </div>
             {(insightActual.recomendaciones || []).length > 0 && (
-              <div className="rounded-xl border p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
+              <div className="rounded-xl border p-4 sm:p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
                 <h3 className="text-sm font-semibold mb-4" style={{ color: '#1b1b1e' }}>💡 Recomendaciones para Compliance Officers</h3>
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {insightActual.recomendaciones.map((rec, i) => (
                     <div key={i} className="bg-white/80 rounded-lg p-4">
                       <p className="font-semibold text-sm mb-1" style={{ color: '#a663cc' }}>{rec.titulo}</p>
-                      <p className="text-xs" style={{ color: '#4d4d4d' }}>{rec.texto}</p>
+                      <p className="text-xs" style={{ color: '#393e41' }}>{rec.texto}</p>
                     </div>
                   ))}
                 </div>
@@ -471,9 +471,9 @@ export default function App() {
         {/* Lecciones para auditoría (lectura editorial PLD) */}
         {activeView === 'lecciones' && (
           <div className="space-y-6">
-            <div className="rounded-xl border p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
+            <div className="rounded-xl border p-4 sm:p-6" style={{ background: 'linear-gradient(135deg, #a663cc10, #ff836110)', borderColor: '#a663cc30' }}>
               <h3 className="text-sm font-semibold mb-2" style={{ color: '#1b1b1e' }}>🎯 Lecciones para auditoría: lo que la CNBV sanciona en materia de PLD</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#4d4d4d' }}>
+              <p className="text-sm leading-relaxed" style={{ color: '#393e41' }}>
                 La multa rara vez llega por el caso sofisticado: llega por el control básico que no se pudo demostrar. Estos son los cinco focos donde se concentran las sanciones, con las cifras del período elegido ({selectedMes === 'todos' ? 'Acumulado 2026' : (mesActual ? mesActual.nombre : '')}).
               </p>
               <p className="text-xs leading-relaxed mt-3" style={{ color: '#6b7280' }}>
@@ -481,7 +481,7 @@ export default function App() {
               </p>
             </div>
 
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { label: 'SANCIONES PLD', value: lecturaPLD.count, sub: 'Registros', color: '#a663cc' },
                 { label: '% DEL PERÍODO', value: `${stats.total > 0 ? (lecturaPLD.count / stats.total * 100).toFixed(0) : 0}%`, sub: `de ${stats.total} sanciones`, color: '#ff8361' },
@@ -496,7 +496,7 @@ export default function App() {
               ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {[...FOCOS].sort((a, b) => lecturaPLD.porFoco[b.id].count - lecturaPLD.porFoco[a.id].count).map(foco => {
                 const d = lecturaPLD.porFoco[foco.id];
                 return (
@@ -511,7 +511,7 @@ export default function App() {
                       <div className="h-full rounded-full" style={{ width: `${lecturaPLD.count > 0 ? (d.count / lecturaPLD.count * 100) : 0}%`, backgroundColor: foco.color }} />
                     </div>
                     <p className="text-xs mb-3" style={{ color: '#9ca3af' }}>{lecturaPLD.count > 0 ? (d.count / lecturaPLD.count * 100).toFixed(0) : 0}% de las sanciones PLD · {d.entidades.size} entidades</p>
-                    <p className="text-xs leading-relaxed flex-1" style={{ color: '#4d4d4d' }}><span className="font-semibold" style={{ color: foco.color }}>Qué revisar: </span>{foco.revisar}</p>
+                    <p className="text-xs leading-relaxed flex-1" style={{ color: '#393e41' }}><span className="font-semibold" style={{ color: foco.color }}>Qué revisar: </span>{foco.revisar}</p>
                     <button onClick={() => { setSelectedFoco(foco.id); setShowCerrados(true); setActiveView('resumen'); }} className="mt-4 text-xs font-medium text-left" style={{ color: '#a663cc' }}>
                       Ver estos {d.count} registros →
                     </button>
@@ -524,7 +524,7 @@ export default function App() {
       </main>
 
       <footer className="border-t bg-white mt-8" style={{ borderColor: '#e5e5e5' }}>
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #a663cc, #8b4db8)' }}>
               <span className="text-white font-bold text-xs">360</span>
